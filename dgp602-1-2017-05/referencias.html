@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript vía p5.js</title>
+    <link href="https://fonts.googleapis.com/css?family=Martel:800" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Primero</a></li>
+          <li><a href="page-1.html">Segundo</a></li>
+          <li><a href="page-2.html">Tercero</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="referencias.html">Referencias</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+<header class="row">
+  <div class="col-sm-12">
+    <h1>JavaScript Reference Cheat Sheet<br />
+    <small>Gentileza de <a href="https://codepen.io/davidicus/details/trhme">David Conner</a></small></h1>
+  </div>
+</header>
+
+<nav class="row">
+  <div class="col-sm-6">
+  <h3>Working With DOM</h3>
+    <ul>
+      <li><a rel="nofollow" rel="noreferrer"href="#accessing">Accessing the DOM</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#siblings">Grab Children/Parent Node(s)</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#createDom">Create DOM Elements</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#addDom">Add Elements to the DOM</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#classList">Add/Remove/Toggle/Check Classes</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-6">
+  <h3>Working With JS</h3>
+    <ul>
+      <li><a rel="nofollow" rel="noreferrer"href="#array">Add/Remove Array Item</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#addProp">Add/Remove Object Properties</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#conditional">Conditionals</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#loops">Loops</a></li>
+      <li><a rel="nofollow" rel="noreferrer"href="#type">Type Checking</a></li>
+    </ul>
+  </div>
+  <div class="clearfix"></div>
+</nav>
+
+<section id="accessing" class="row">
+<div class="col-sm-12">
+<h3>Accessing Dom Elements:</i></h3>
+<pre>
+<code>
+//Returns a reference to the element by its ID.
+document.getElementById(id);
+//Returns an array-like object of all child elements which have all of the given class names.
+document.getElementsByClassName(names);
+//Returns an HTMLCollection of elements with the given tag name.
+document.getElementsByTagName(name);
+//Returns the first element within the document that matches the specified group of selectors.
+document.querySelector(selectors);
+//Returns a list of the elements within the document (using depth-first pre-order traversal of the document's nodes)
+//that match the specified group of selectors.
+document.querySelectorAll(selectors);
+</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up"  href="#">Top</a>
+</div>
+</section>
+<!-- /Accessing Dom Elements -->
+
+<!-- Grab Children/Parent Node(s) -->
+<section id="siblings" class="row">
+<div class="col-sm-12">
+<h3>Grab Children/Parent Node(s):</i></h3>
+<pre>
+<code>
+//Get child nodes
+var stored = document.getElementById('heading');
+var children = stored.childNodes;
+console.log(children);
+//Get parent node
+var parental = children.parentNode;
+</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up"  href="#">Top</a>
+</div>
+</section>
+<!-- /Grab Children/Parent Node(s) -->
+
+<!-- Create New DOM Elements -->
+<section id="createDom" class="row">
+<div class="col-sm-12">
+<h3>Create New DOM Elements:</i></h3>
+<pre>
+<code>
+//create new elments
+var newHeading = document.createElement('h1');
+var newParagraph = document.createElement('p');
+
+//create text nodes for new elements
+var h1Text= document.createTextNode("This is the fucking header text!");
+var paraText= document.createTextNode("This is the fucking Paragraph text!");
+
+//attach new text nodes to new elements
+newHeading.appendChild(h1Text);
+newParagraph.appendChild(paraText);
+
+//elements are now created and ready to be added to the DOM. </code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up" href="#">Top</a>
+</div>
+</section>
+<!-- /Create New DOM Elements -->
+
+
+<!-- Add Elements to the DOM -->
+<section id="addDom" class="row">
+  <div class="col-sm-12">
+  <h3>Add Elements to the DOM:</i></h3>
+<pre>
+<code>
+//grab element on page you want to add stuff to
+var firstHeading = document.getElementById('firstHeading');
+
+//add both new elements to the page as children to the element we stored in firstHeading.
+firstHeading.appendChild(newHeading);
+firstHeading.appendChild(newParagraph);
+
+//can also insert before like so
+
+//get parent node of firstHeading
+var parent = firstHeading.parentNode;
+
+//insert newHeading before FirstHeading
+parent.insertBefore(newHeading, firstHeading);</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up" href="#">Top</a>
+</div>
+</section>
+<!-- /Add Elements to the DOM -->
+
+<!-- Add Elements to the DOM cont-->
+<section class="row">
+  <div class="col-sm-12">
+  <h3>Add Elements to the DOM cont.:</i></h3>
+<pre>
+<code>
+//Suppose you have the following HTML
+&lt;div id="box1">
+    &lt;p>Some example text&lt;/p>
+&lt;/div>
+&lt;div id="box2">
+    &lt;p>Some example text&lt;/p>
+&lt;/div>
+
+//you can insert another snippet of HTML between #box1 and #box2
+var box2 = document.getElementById("box2");
+box2.insertAdjacentHTML('beforebegin', '&lt;div>&lt;p>This gets inserted.&lt;/p>&lt;/div>');
+
+//beforebegin - The HTML would be placed immediately before the element, as a sibling.
+//afterbegin - The HTML would be placed inside the element, before its first child.
+//beforeend - The HTML would be placed inside the element, after its last child.
+//afterend - The HTML would be placed immediately after the element, as a sibling.</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up" href="#">Top</a>
+</div>
+</section>
+<!-- /Add Elements to the DOM cont. -->
+
+
+<!-- Add/Remove/Toggle/Check Classes -->
+<section id="classList" class="row">
+  <div class="col-sm-12">
+  <h3>Add/Remove/Toggle/Check Classes:</i></h3>
+<pre>
+<code>
+//grab element on page you want to use
+var firstHeading = document.getElementById('firstHeading');
+
+//will remove foo if it is a class of firstHeading
+firstHeading.classList.remove("foo");
+
+//will add the class "anotherClass" if one does not already exist
+firstHeading.classList.add("anotherclass");
+
+//add or remove multiple classes
+firstHeading.classList.add("foo","bar");
+firstHeading.classList.remove("foo","bar");
+
+// if visible class is set remove it, otherwise add it
+firstHeading.classList.toggle("visible");
+
+//will return true if it has class of "foo" or false if it does not
+firstHeading.classList.contains("foo");</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up" href="#">Top</a>
+</div>
+</section>
+<!-- / Add/Remove/Toggle/Check Classes -->
+
+
+<!-- Add/Remove Array Item -->
+<section id="array" class="row">
+  <div class="col-sm-12">>
+  <h3>Add/Remove Array Item:</i></h3>
+  <a rel="nofollow" rel="noreferrer"href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" >Array docs</a>
+<pre>
+<code>
+//create an empty array
+var myArray = [];
+
+//create array with items. Can store any type
+var myOtherArray = [myArray, true, "A random string"];
+
+//call specific value in an array
+myOtherArray[0];
+//will return myArray
+
+//change value for this item
+myOtherArray[0] = false;
+//will now return false
+
+
+//add to end of array
+myOtherArray[myOtherArray.length] = "new stuff";
+//will return the new item "new stuff"
+
+//or you can use push()
+myOtherArray.push("new stuff");
+//will return new length of array
+
+
+//you can remove this last item by using pop()
+myOtherArray.pop();
+//will return the last item of the array and will have removed it from myOtherArray
+
+
+//shift and unshift will do the same for the begging of the Array
+myOtherArray.shift();
+//will remove and return first item of array
+
+myOtherArray.unshift(1,2);
+//this will add 1 and 2 to beginning of array and return new length
+
+//you can use delete keyword but turn value to undefine and not shorten length. so we use splice()
+myOtherArray.splice(2, 1);
+//this will remove and return  the third item only.
+//first arg is where to start and second is how many things to splice. this example is 1.</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up"  href="#">Top</a>
+</div>
+</section>
+<!-- /Add/Remove Array Item -->
+
+
+<!-- Adding/Removing Properties in Object -->
+<section id="addProp" class="row">
+  <div class="col-sm-12">
+  <h3>Adding/Removing Properties in Object</i></h3>
+<pre>
+<code>
+//create an object
+var newObject = {};
+
+//add a property to object
+newObject.newPropName = "super fly";
+
+//or other syntax
+newObject['other new prop name'] = "mildly fly";
+
+//Now newObject.newPropName will return super fly
+newObject.newPropName;
+
+//now to delete
+delete newObject.newPropName;</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up" href="#">Top</a>
+</div>
+</section>
+<!-- / Adding/Removing Properties in Object -->
+
+
+<!-- Conditionals -->
+<section id="conditional" class="row">
+  <div class="col-sm-12">
+  <h3>Conditionals:</i></h3>
+<pre>
+<code>
+//If Else statements
+var a = 1;
+varb b = 2;
+
+if( a < b ) {
+  console.log('the if is true!');
+} else {
+  console.log('the if is false!');
+}
+
+
+//Multi If Else statements
+var a = 1;
+varb b = 2;
+varb c = 3;
+
+if( a > b ) {
+  console.log('the if is true!');
+} else if(a > c) {
+  console.log('OK, THIS if is Ture!');
+} else {
+  console.log('None of these were true');
+}
+
+
+//Ternary operators. same as if else
+var a = 1;
+varb b = 2;
+
+a === b ? console.log('The statement is true) : console.log('The statement is false');
+
+
+//switch statements.
+var a = 4;
+switch (a) {
+  case "Oranges":
+    console.log("Orange? really?");
+    break;
+  case 1:
+    console.log("a is equal to 1.");
+    break;
+  case 2:
+    console.log("a is equal to 2.");
+    break;
+  case 3:
+    console.log("a is equal to 3.");
+    break;
+  case 4:
+    console.log("a is equal to 4.");
+    break;
+  default:
+    console.log("I run if no one else is true.");
+}</code>
+</pre>
+<a rel="nofollow" rel="noreferrer"class="up"  href="#">Top</a>
+</div>
+</section>
+<!-- /Conditionals -->
+
+
+<!-- Loops -->
+<section id="loops" class="row">
+  <div class="col-sm-12">
+  <h3>Loops:</i></h3>
+<pre>
+<code>
+//while loop
+var i = 0;
+while( i < 10 ) {
+  console.log(i);
+  i += 1
+}
+
+
+//do while loop
+var i = 0;
+do {
+  console.log(i);
+  i += 1
+} while( i < 10 )
+
+
+//for loop
+for ( var i = 0; i < 10; i++ ) {
+   console.log(i);
+}
+
+//for in statments
+var obj = {a:1, b:2, c:3};
+
+for ( var prop in obj ) {
+  //check if property is inherited or not
+  if(obj.hasOwnProperty(prop)) {
+    console.log("obj." + prop + " = " + obj[prop]);
+  }
+
+}</code>
+</pre>
+<a rel="nofollow" rel="noreferrer"class="up"  href="#">Top</a>
+</div>
+</section>
+<!-- /Loops -->
+
+
+<!-- Type Checking -->
+<section id="type" class="row">
+<div class="col-sm-12">
+<h3>Type Checking:</i></h3>
+
+<pre>
+<code>
+var myNumber = 1;
+var myString = "some Text";
+var bools = true;
+var myArray = [];
+var myObj = {};
+var notNumber = NaN;
+var nullified = null;
+
+typeof myNumber;
+//returns "number"
+
+typeof myString;
+//returns "string"
+
+typeof bools;
+//returns "boolean"
+
+typeof myArray;
+//returns "object".
+
+//Not super helpful so must check if it has length property to see if it is an array.
+typeof myArray === 'object' && myArray.hasOwnProperty('length');
+//returns true
+
+typeof myObj;
+//returns "object". Must do the same test as above but expect false back from check.
+
+typeof notNumber;
+//returns "number". this is confusing but returns this as NaN is part of the global Number object.
+
+//must check if isNaN()
+typeof notNumber === 'number' && isNaN(notNumber);
+//returns true if type of is "number" and is still NaN</code>
+</pre>
+  <a rel="nofollow" rel="noreferrer"class="up"  href="#">Top</a>
+</div>
+</section>
+<!-- /Type Checking -->
+
+<footer class="row">
+  <div class="col-sm-12">
+    <p>Lunes 10 de abril, 2017 &bull; Seminario Gráfica Computacional II &bull; Carrera de Diseño &bull; Escuela de Pregrado FAU &bull; Universidad de Chile</p>
+  </div>
+</footer>
+</div><!--/container-->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>

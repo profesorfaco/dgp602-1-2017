@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript vía p5.js</title>
+    <link href="https://fonts.googleapis.com/css?family=Martel:800" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/p5.min.js" type="text/javascript"></script>
+    <script src="p5/uno.js" type="text/javascript"></script>
+  </head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Primero</a></li>
+          <li class="active"><a href="page-1.html">Segundo</a></li>
+          <li><a href="page-2.html">Tercero</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="referencias.html">Referencias</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <header>
+        <h1>JavaScript vía p5.js<br />
+          <small>Introducción a la programación del lado del cliente</small></h1>
+      </header>
+      <section>
+      <p>Vamos por lo segundo. Aquí, en <code>page-1.html</code>, podrás ver que el canvas sigue "agregado" al final de la página,
+        pero esta vez usa todo el ancho y todo el alto de la ventana del navegador. Aprovechando que disponemos
+        de un mayor espacio, podemos empezar a agregar elementos, los que pueden revisar a continuación o en <code>p5/uno.js</code>.</p>
+<pre>
+<code>function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+}
+
+function draw() {
+  for (var x = 0; x < windowWidth; x+=10) {
+    fill(random(55,255),random(55,255),random(55,255));
+    ellipse(x, windowHeight/2, 50, 50);
+  }
+}</code>
+</pre>
+      <p>En el script escribí un <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Bucles_e_iteraci%C3%B3n#sentencia_for" target="_blank" rel="nofollow">bucle <em>for</em></a>.
+        Lo que dice es que para cuando se cumpla la condición de que <code>x</code> sea menor que el ancho de la ventana, se le debe sumar 10.
+        En un principio este <code>x</code> almacena el valor 0, valor que incrementa tantas veces como iteraciones en las que se pueda sumar 10 cumpliendo la condición ya dicha.</p>
+      <p>Si ya estás familiarizado con Processing, podrás notar que hay una modificación, que parece pequeña, pero es clave: acá NO se declaran las variable por el tipo de dato que contendrán,
+      como se haría con <code>int x</code> (<a href="http://decsai.ugr.es/~jfv/ed1/c/cdrom/cap2/cap24.htm" target="_blank">int de <u>int</u>eger; cantidad entera</a>),
+      sino que se declara como variable, sin más, <code>var x</code>, como corresponde a las <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">variables en JavaScript</a>.</p>
+      <p>Además, escribí un random para el color de <code>fill()</code>, entregándole a R, G y B la posibilidad de tomar (cada vez que se vuelve realiza el dibujo descrito dentro de <code>function draw(){}</code>)
+        un valor entre 55 y 255. Lo que se colorea es, obviamente, la elipse ubicada en el <code>x</code> que corresponda a su iteración, estando todas las elipses justo
+        al centro de la altura de la ventana (<code>windowHeight/2</code>), midiendo cada una 50 x 50 pixeles.</p>
+      <p>Realiza algunas modificaciones en <code>p5/uno.js</code>. Intenta: </p>
+        <ul>
+          <li>disminuir la altura del <code>canvas</code> a la mitad, manteniendo a las elipses centradas.</li>
+          <li>detener el dibujo en una única ejecución.</li>
+          <li>cambiar el random del <code>fill</code> por una gradación de un único matiz en 25 distintas saturaciones, manteniendo la luminosidad.</li>
+        </ul>
+        <p>Revisa la página de <a href="https://p5js.org/reference/" rel="nofollow" target="_blank">referencias de p5.js</a> para guiarte en la realización de las modificaciones.</p>
+    </section>
+    <footer><p>Lunes 10 de abril, 2017 &bull; Seminario Gráfica Computacional II &bull; Carrera de Diseño &bull; Escuela de Pregrado FAU &bull; Universidad de Chile</p></footer>
+    </div><!--col-sm-12-->
+  </div><!--row-->
+</div><!--container-->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>

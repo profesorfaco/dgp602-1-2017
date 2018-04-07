@@ -1,0 +1,24 @@
+body{
+  padding-top:50px;
+}
+footer{
+  border-top:1px solid #bbb;
+  padding:1em 0;
+  margin:2em 0;
+  font-size:80%;
+  letter-spacing: 0.05em;
+}
+
+h1{
+  margin:2em 0 1em 0;
+  font-family: 'Martel', serif;
+}
+
+div#here{
+  margin-bottom:1em;
+}
+
+div#here canvas{
+  max-width: 100%;
+  max-height:300px;
+}

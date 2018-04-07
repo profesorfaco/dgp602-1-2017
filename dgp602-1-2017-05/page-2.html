@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JavaScript vía p5.js</title>
+    <link href="https://fonts.googleapis.com/css?family=Martel:800" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="js/p5.min.js" type="text/javascript"></script>
+    <script src="p5/dos.js" type="text/javascript"></script>
+  </head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="index.html">Primero</a></li>
+          <li><a href="page-1.html">Segundo</a></li>
+          <li class="active"><a href="page-2.html">Tercero</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="referencias.html">Referencias</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <header>
+        <h1>JavaScript vía p5.js<br />
+          <small>Introducción a la programación del lado del cliente</small></h1>
+      </header>
+      <section>
+      <p>Avancemos a lo tercero. Aquí, en <code>page-2.html</code>, podrás ver que el canvas está dentro de una <code>div id="here"</code>,
+        ya no va "agregado" al final de la página. También podrás notar que, en esta ocasión,
+        se ajuste al tamaño de esa división, aun cuando cambiemos el tamaño de la ventana.
+        El script <code>p5/dos.js</code> tiene algo de <em>responsive</em>.</p>
+      <p>Además, sumo un par de variables especiales, que pueden almacenar varios ítems. A ellas se les llama arreglos (<code>arrays</code>).
+        Pueden notar que en <code>var movies=[]</code>, pongo los nombres entre comillas, y separo una película de otra mediante comas.
+        También podrán notar que en <code>var oscars=[]</code> solo ocupo comas, porque estoy usando números.</p>
+        <p>Más abajo, en el dibujo (<code>function draw(){}</code>), hago algunas operaciones para que me entregue lo que corresponda en cada iteración;
+          cada ítem en un arreglo puede ser llamado por la posición que ocupa, correspondiendo la primera al 0.
+        Así puedo obtener el ítem "La La Land" de <code>movies</code> si es que pregunto a la variable: ¿qué estás almacenando en <code>[0]</code>?.
+        Este mismo criterio de ubicación lo ocupé en el número de las páginas que componen este sitio, donde <code>page-2.html</code> muestra lo tercero.</p>
+
+<pre>
+<code>var movies = [
+  "La La Land",
+  "Mad Max: Fury Road",
+  "Gravity",
+  "The Artist",
+  "The Hurt Locker",
+  "Slumdog Millionaire",
+  "El aviador",
+  "El Señor de los Anillos: el retorno del Rey",
+  "Chicago",
+]
+
+var oscars = [6,6,7,5,6,8,5,11,6]
+
+//movies.push("Matrix");
+//oscars.push(4);
+
+function setup() {
+  var canvas = createCanvas(windowWidth, windowHeight/2);
+  canvas.parent('here');
+  noLoop();
+}
+
+function windowResized() {
+  //este ajuste es cuma: no estoy ajustando el ancho en relación al canvas, sino a la ventana
+  //fíjense que también estoy utilizando el CSS para ajustar un ancho máximo de 100%
+  resizeCanvas(windowWidth, windowHeight/2);
+}
+
+function draw() {
+  background(25);
+  for(var x = 0; x <= movies.length; x++){
+    //defino el blanco con 100/255 de transparencia
+    fill(255,100);
+    // el tamaño del texto es igual a la cantidad de oscars ganados * 3
+    textSize((oscars[x]*3));
+    // aquí dame el nro. de oscar ganado y ubícalo en una parte del ancho del canvas
+    text(oscars[x], ((width/(movies.length+1))*(x+1)), (height/2));
+    //re-defino el blanco
+    fill(255);
+    // ahora cambia el tamaño de texto a 12 px, como valor fijo para todo lo que sigue
+    textSize(12);
+    // dame el nombre de la película correspondiente y ubícala en una parte del ancho
+    text(movies[x], ((width/(movies.length+1))*(x+1)), ((height/2)+12),((windowWidth/(movies.length+1))-50),100);
+  }
+}</code>
+      </pre>
+
+      <p>Abajo de este párrafo está la división (<code>div</code>) de identidad <code>here</code>:</p>
+
+      <div id="here"></div>
+
+      <p>Realiza algunas modificaciones en <code>p5/dos.js</code>. Intenta:</p>
+      <ul>
+        <li>cambiar la identidad de la división (<code>div</code>) que cotiene al p5 que está ejecutándose.</li>
+        <li>modificar <a href="https://www.w3schools.com/js/js_arrays.asp" target="_blank" rel="nofollow">los arreglos</a></li>
+        <li>implementar un gráfico lineal o de barras para representar los valores en los arreglos modificados.</li>
+      </ul>
+    </section>
+    <footer><p>Lunes 10 de abril, 2017 &bull; Seminario Gráfica Computacional II &bull; Carrera de Diseño &bull; Escuela de Pregrado FAU &bull; Universidad de Chile</p></footer>
+    </div><!--col-sm-12-->
+  </div><!--row-->
+</div><!--container-->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+</body>
+</html>
